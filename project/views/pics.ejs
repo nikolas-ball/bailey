@@ -1,9 +1,97 @@
-<h1>this is the main pics page</h1>
+var express = require("express");
+var router = express.Router();
+var Pic = require("../models/pics");
+
+// INDEX - show all pics
+router.get("/", function(req, res){
+	// Get all pics from DB
+	Pic.find({}, function(err, allPics){
+		if(err){
+			console.log(err);
+		} else {
+			res.render("bailey/index", {pics:allPics, page: 'pics'});
+		}
+	});
+});
+
+//CREATE - add new picture to DB
+router.post("/", function(req, res){
+  // get data from form and add to pics array
+  var title = req.body.title;
+  var image = req.body.image;
+  var desc = req.body.description;
+  var newPost = {title: title, image: image, description: desc};
+    // Create a new post and save to DB
+    Post.create(newPost, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            //redirect back to the specific posts' page -- need todo that
+            // console.log(newlyCreated);
+			req.flash("success", "Successfully Created!");
+            res.redirect("/pics");
+        }
+    });
+  });
+});
+
+// NEW - show form to create new post
+router.get("/new", function(req, res){
+	res.render("pics/new");
+});
+
+// SHOW - shows more info about one post/pic
+router.get("/:id", function(req, res){
+	//find the post with provided ID
+	Post.findById(req.params.id).populate("comments").exec(function(err, foundPic){
+		if(err || !foundPic){
+			req.flash("error", "Post Not Found");
+			res.redirect("back");
+		} else {
+			//render show template with that pic
+			res.render("pics/show", {pics: foundPic});
+			
+		}
+	});
+});
+
+//EDIT post route
+router.get("/:id/edit", function(req, res){
+	Post.findById(req.params.id, function(err, foundPic){
+		if(err){
+			req.flash("error", "Post Not Found");
+		} else {
+			res.render("pics/edit", {pics: foundPic});
+		}
+	});
+});
 
 
-<% pics.forEach(function(pic){ %>
-    <div>
-        <h4><%= pic.title %></h4>
-         <img src="<%= pic.image %>">
-    </div>
-<% }); %>
+// UPDATE Post ROUTE
+router.put("/:id", function(req, res){
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, pic){
+        if(err){
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            req.flash("success", "Successfully Updated!");
+            res.redirect("/pics/" + pic._id);
+        }
+    });
+  });
+});
+
+//DESTROY post route
+router.delete("/:id", function(req, res){
+	Post.findByIdAndRemove(req.params.id, function(err){
+		if(err){
+            req.flash("error", "Failed To Delete!");
+            res.redirect("/pics");
+		} else {
+            req.flash("success", "Successfully Deleted");
+			res.redirect("/pics");
+		}
+	});
+});
+
+module.exports = router;
