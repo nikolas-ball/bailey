@@ -1,4 +1,4 @@
-# bailey.github.io
+# bailey's site
 
 ### Image sharing site made specifically for a four legged friend named Bailey!
 
