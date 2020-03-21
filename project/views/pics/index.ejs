@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %>
+
+	<div class="container">
+	<header class="jumbotron">
+		<div class="container">
+			<h1>Welcome To <strong><em>Bailey's Site</em></strong>!</h1>
+			<p>View these cute pictures of Bailey the Cavapoo puppy.</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="/pics/new">Add New Post</a>
+			</p>
+		</div>
+	</header>
+		
+	<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+		 <% pics.forEach(function(pic){ %>
+			<div class="col-md-3 col-sm-6">
+				<div class="thumbnail">
+				<img src="<%= pic.image %>">
+				<div class="caption">
+				<h4><%= pic.name %></h4>
+				</div>
+				<p>
+					<a href="/pics/<%= pic._id %>" class="btn btn-primary">View Larger</a>
+				</p>
+				</div>
+			</div>
+		<% }) %>
+		</div>
+	</div>
+
+<%- include ("../partials/footer") %>

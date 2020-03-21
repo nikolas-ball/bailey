@@ -1,21 +1,48 @@
+require('dotenv').config();
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+var flash = require("connect-flash");
+var methodOverride = require("method-override");
+var Post = require("./models/post");
+//requiring routes 
+var picRoutes = require("./routes/pics");
 
+var moment = require("moment");
+// var url = process.env.MONGOLAB_URI;
+
+// ***come back and hide MongoDB password in MONGOLAB_URI variable, commented out because it broke the deploy on Heroku
+// mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true});
+// mongoose.connect(url, {useNewUrlParser: true});
+mongoose.connect(process.env.DATABASEURL);
+
+app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
+app.use(flash());
+// seedDB(); //seed the database
 
-app.get("/", function(req, res){
-    res.render("landing");
+//require moment.js for time since posts
+app.locals.moment = require("moment");
+
+// PASSPORT CONFIGURATION
+// app.use(require("express-session")({
+// 	secret: "Bailey is my son",
+// 	resave: false,
+// 	saveUninitialized: false
+// }));
+
+app.use(function(req, res, next){
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
+	next();
 });
 
-app.get("/pics", function(req, res){
-    var pics = [
-        {title: "bailey's first pic", image: "https://images.unsplash.com/photo-1518587671104-999f3dd2d340?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"},
-        {title: "bailey's first icecream", image: "https://images.unsplash.com/photo-1562176551-548d3e8830c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"},
-        {title: "bailey's first apple", image: "https://images.unsplash.com/photo-1524549110215-6624d76a0b0b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"}
-    ]
+app.use("/", indexRoutes);
+app.use("/pics", picRoutes);
 
-    res.render("pics", {pics:pics});
-});
 // http://localhost:3000/
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("Bailey's server has started!");

@@ -1,26 +1,27 @@
 var express = require("express");
 var router = express.Router();
-var Pic = require("../models/pics");
+var Post = require("../models/post");
+var middleware = require("../middleware");
 
-// INDEX - show all pics
+// INDEX - show all posts
 router.get("/", function(req, res){
-	// Get all pics from DB
-	Pic.find({}, function(err, allPics){
+	// Get all posts from DB
+	Post.find({}, function(err, allPosts){
 		if(err){
 			console.log(err);
 		} else {
-			res.render("bailey/index", {pics:allPics, page: 'pics'});
+			res.render("pics/index", {posts:allPosts, page: 'pics'});
 		}
 	});
 });
 
-//CREATE - add new picture to DB
+//CREATE - add new post to DB
 router.post("/", function(req, res){
-  // get data from form and add to pics array
+  // get data from form and add to posts array
   var title = req.body.title;
   var image = req.body.image;
   var desc = req.body.description;
-  var newPost = {title: title, image: image, description: desc};
+    var newPost = {title: title, image: image, description: desc};
     // Create a new post and save to DB
     Post.create(newPost, function(err, newlyCreated){
         if(err){
@@ -40,16 +41,16 @@ router.get("/new", function(req, res){
 	res.render("pics/new");
 });
 
-// SHOW - shows more info about one post/pic
+// SHOW - shows more info about one post
 router.get("/:id", function(req, res){
 	//find the post with provided ID
-	Post.findById(req.params.id).populate("comments").exec(function(err, foundPic){
-		if(err || !foundPic){
+	Post.findById(req.params.id).exec(function(err, foundPost){
+		if(err || !foundPost){
 			req.flash("error", "Post Not Found");
 			res.redirect("back");
 		} else {
-			//render show template with that pic
-			res.render("pics/show", {pics: foundPic});
+			//render show template with that post
+			res.render("pics/show", {posts: foundPost});
 			
 		}
 	});
@@ -57,19 +58,19 @@ router.get("/:id", function(req, res){
 
 //EDIT post route
 router.get("/:id/edit", function(req, res){
-	Post.findById(req.params.id, function(err, foundPic){
+	Post.findById(req.params.id, function(err, foundPost){
 		if(err){
 			req.flash("error", "Post Not Found");
 		} else {
-			res.render("pics/edit", {pics: foundPic});
+			res.render("pics/edit", {post: foundPost});
 		}
 	});
 });
 
 
-// UPDATE Post ROUTE
+// UPDATE post ROUTE
 router.put("/:id", function(req, res){
-    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, pic){
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, post){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
@@ -85,10 +86,8 @@ router.put("/:id", function(req, res){
 router.delete("/:id", function(req, res){
 	Post.findByIdAndRemove(req.params.id, function(err){
 		if(err){
-            req.flash("error", "Failed To Delete!");
-            res.redirect("/pics");
+			res.redirect("/pics");
 		} else {
-            req.flash("success", "Successfully Deleted");
 			res.redirect("/pics");
 		}
 	});
