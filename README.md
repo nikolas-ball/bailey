@@ -1,7 +1,7 @@
-# Bailey's site
+# Bailey's site :)
 
 ### Image sharing site made specifically for a four legged friend named Bailey!
 
 ### Node, Express, MongoDB, and some other stuff
 
-#### Visit the site and enjoy the pictures, and if you have the admin login, you can upload pics! If not, all you can do is view the uploaded pics and comment on them if you want.
+#### Visit the site and enjoy the pictures, and if you want, you can upload pics! If not, feel free to just view the uploaded pics if you want.
