@@ -7,7 +7,7 @@ var flash = require("connect-flash");
 var methodOverride = require("method-override");
 var Post = require("./models/post");
 //requiring routes 
-var picRoutes = require("./routes/pics");
+var picRoutes = require("./routes/pics.ejs");
 
 var moment = require("moment");
 // var url = process.env.MONGOLAB_URI;
