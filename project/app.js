@@ -1,4 +1,3 @@
-require('dotenv').config();
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -7,19 +6,19 @@ var flash = require("connect-flash");
 var methodOverride = require("method-override");
 var Post = require("./models/post");
 //requiring routes 
+app.set("view engine", "ejs");
 var picRoutes = require("./routes/pics.ejs");
-var indexRoutes = require("./views/pics/index.ejs")
+var indexRoutes = require("./routes/index");
 
 var moment = require("moment");
 // var url = process.env.MONGOLAB_URI;
 
-// ***come back and hide MongoDB password in MONGOLAB_URI variable, commented out because it broke the deploy on Heroku
 // mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true});
 // mongoose.connect(url, {useNewUrlParser: true});
 mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine", "ejs");
+
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
