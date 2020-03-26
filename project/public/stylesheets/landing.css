@@ -13,6 +13,10 @@ body {
   color: #fff;
 }
 
+#landing-header h3 {
+  color: #fff;
+}
+
 .slideshow { 
   position: fixed;
   width: 100%;
@@ -38,24 +42,24 @@ body {
   z-index: 0;
   animation: imageAnimation 50s linear infinite; 
 }
-/* TODO change these images once you host images of bailey on imgur */
+
 .slideshow li:nth-child(1) { 
-  background-image: url(https://i.imgur.com/K3mPv14.jpg) 
+  background-image: url(https://imgur.com/cw45Wtz) 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://i.imgur.com/SBEmFpv.jpg);
+  background-image: url(https://i.imgur.com/525Pg4I.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://i.imgur.com/emvhOnb.jpg);
+  background-image: url(https://i.imgur.com/pxe5DAM.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://i.imgur.com/2LSMCmJ.jpg);
+  background-image: url(https://i.imgur.com/cw45Wtz.png);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(https://i.imgur.com/TVGe0Ef.jpg);
+  background-image: url(https://i.imgur.com/uizDrvg.png);
   animation-delay: 40s; 
 }
 
