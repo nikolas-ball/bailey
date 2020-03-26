@@ -15,7 +15,7 @@ var moment = require("moment");
 
 // mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true});
 // mongoose.connect(url, {useNewUrlParser: true});
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect("mongodb+srv://admin:KtG3GzPEcySJMaDJ@cluster0-s91nu.mongodb.net/test?retryWrites=true&w=majority");
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -28,11 +28,11 @@ app.use(flash());
 app.locals.moment = require("moment");
 
 // PASSPORT CONFIGURATION
-// app.use(require("express-session")({
-// 	secret: "Bailey is my son",
-// 	resave: false,
-// 	saveUninitialized: false
-// }));
+app.use(require("express-session")({
+	secret: "Bailey is my son",
+	resave: false,
+	saveUninitialized: false
+}));
 
 app.use(function(req, res, next){
 	res.locals.error = req.flash("error");
