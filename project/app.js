@@ -6,8 +6,8 @@ var flash = require("connect-flash");
 var methodOverride = require("method-override");
 var Post = require("./models/post");
 //requiring routes 
-app.set("view engine", "ejs");
-var picRoutes = require("./routes/pics.ejs");
+
+var picRoutes = require("./routes/pics.js");
 var indexRoutes = require("./routes/index");
 
 var moment = require("moment");
@@ -18,7 +18,7 @@ var moment = require("moment");
 mongoose.connect("mongodb+srv://admin:KtG3GzPEcySJMaDJ@cluster0-s91nu.mongodb.net/test?retryWrites=true&w=majority");
 
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
