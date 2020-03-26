@@ -1,10 +1,11 @@
 {
   "name": "bailey",
   "version": "1.0.0",
-  "description": "",
+  "description": "A site where we can view all the cute pics of Bailey the cavapoo doggie",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
