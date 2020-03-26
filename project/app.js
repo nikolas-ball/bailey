@@ -7,7 +7,7 @@ var methodOverride = require("method-override");
 var Post = require("./models/post");
 //requiring routes 
 
-var picRoutes = require("./routes/pics.js");
+var postRoutes = require("./routes/posts.js");
 var indexRoutes = require("./routes/index");
 
 var moment = require("moment");
@@ -15,7 +15,7 @@ var moment = require("moment");
 
 // mongoose.connect(process.env.MONGOLAB_URI, {useNewUrlParser: true});
 // mongoose.connect(url, {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://admin:KtG3GzPEcySJMaDJ@cluster0-s91nu.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -42,7 +42,7 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoutes);
 
-app.use("/pics", picRoutes);
+app.use("/posts", postRoutes);
 
 // http://localhost:3000/
 app.listen(process.env.PORT, process.env.IP, function(){

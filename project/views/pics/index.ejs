@@ -8,21 +8,21 @@
 			<br />
 			<p>To upload a picture, first upload it for free to <a href="https://imgur.com/">Imgur.com</a>, and then use the image url for the post on this site.</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="/pics/new">Add New Post</a>
+				<a class="btn btn-primary btn-lg" href="/posts/new">Add New Post</a>
 			</p>
 		</div>
 	</header>
 		
 	<div class="row text-center" style="display:flex; flex-wrap:wrap;">
-		 <% pics.forEach(function(pic){ %>
+		 <% posts.forEach(function(post){ %>
 			<div class="col-md-3 col-sm-6">
 				<div class="thumbnail">
-				<img src="<%= pic.image %>">
+				<img src="<%= post.image %>">
 				<div class="caption">
-				<h4><%= pic.name %></h4>
+				<h4><%= post.name %></h4>
 				</div>
 				<p>
-					<a href="/pics/<%= pic._id %>" class="btn btn-primary">View Larger</a>
+					<a href="/posts/<%= post._id %>" class="btn btn-primary">View Larger</a>
 				</p>
 				</div>
 			</div>

@@ -17,6 +17,10 @@ body {
   color: #fff;
 }
 
+.aaa a {
+  background-color: gray;
+}
+
 .slideshow { 
   position: fixed;
   width: 100%;

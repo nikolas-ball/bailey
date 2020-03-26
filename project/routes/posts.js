@@ -9,7 +9,7 @@ router.get("/", function(req, res){
 		if(err){
 			console.log(err);
 		} else {
-			res.render("pics/index", {posts:allPosts, page: 'pics'});
+			res.render("posts/index", {posts:allPosts, page: 'posts'});
 		}
 	});
 });
@@ -29,14 +29,14 @@ router.post("/", function(req, res){
             //redirect back to the specific posts' page -- need todo that
             // console.log(newlyCreated);
 			req.flash("success", "Successfully Created!");
-            res.redirect("/pics");
+            res.redirect("/posts");
         }
     });
   });
 
 // NEW - show form to create new post
 router.get("/new", function(req, res){
-	res.render("pics/new");
+	res.render("posts/new");
 });
 
 // SHOW - shows more info about one post
@@ -48,7 +48,7 @@ router.get("/:id", function(req, res){
 			res.redirect("back");
 		} else {
 			//render show template with that post
-			res.render("pics/show", {posts: foundPost});
+			res.render("posts/show", {posts: foundPost});
 			
 		}
 	});
@@ -60,7 +60,7 @@ router.get("/:id/edit", function(req, res){
 		if(err){
 			req.flash("error", "Post Not Found");
 		} else {
-			res.render("pics/edit", {post: foundPost});
+			res.render("posts/edit", {post: foundPost});
 		}
 	});
 });
@@ -74,7 +74,7 @@ router.put("/:id", function(req, res){
             res.redirect("back");
         } else {
             req.flash("success", "Successfully Updated!");
-            res.redirect("/pics/" + pic._id);
+            res.redirect("/posts/" + post._id);
         }
     });
   });
@@ -83,9 +83,9 @@ router.put("/:id", function(req, res){
 router.delete("/:id", function(req, res){
 	Post.findByIdAndRemove(req.params.id, function(err){
 		if(err){
-			res.redirect("/pics");
+			res.redirect("/posts");
 		} else {
-			res.redirect("/pics");
+			res.redirect("/posts");
 		}
 	});
 });
