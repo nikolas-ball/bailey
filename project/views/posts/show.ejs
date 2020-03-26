@@ -12,10 +12,10 @@
 		</div>
 		<div class="col-md-9">
 			<div class="thumbnail">
-				<img class="img-responsive" src="<%= pic.image %>">
+				<img class="img-responsive" src="<%= post.image %>">
 				<div class="caption-full">
-						<a class="btn btn-warning" href="/pics/<%= pic._id %>/edit">Edit</a>
-						<form id="delete-form" action="/pics/<%= pic._id %>?_method=DELETE" method="POST">
+						<a class="btn btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+						<form id="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
 							<button class="btn btn-danger">Delete</button>
 						</form>
 					<% }%>
