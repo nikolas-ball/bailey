@@ -8,6 +8,7 @@ var methodOverride = require("method-override");
 var Post = require("./models/post");
 //requiring routes 
 var picRoutes = require("./routes/pics.ejs");
+var indexRoutes = require("./views/index.ejs")
 
 var moment = require("moment");
 // var url = process.env.MONGOLAB_URI;
@@ -41,6 +42,7 @@ app.use(function(req, res, next){
 });
 
 app.use("/", indexRoutes);
+
 app.use("/pics", picRoutes);
 
 // http://localhost:3000/
