@@ -85,6 +85,7 @@ router.delete("/:id", function(req, res){
 		if(err){
 			res.redirect("/posts");
 		} else {
+			req.flash("error", "Post Deleted");
 			res.redirect("/posts");
 		}
 	});

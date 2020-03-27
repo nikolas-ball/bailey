@@ -3,12 +3,12 @@
 	<div class="container">
 	<header class="jumbotron">
 		<div class="container">
-			<h1 class="text-center">Welcome To <strong><em>Bailey's Site</em></strong>!</h1>
+			<h1 class="text-center">Welcome To <strong><em>Baileybook</em></strong>!</h1>
 			<div class="container text-center">
-			<img src="/stylesheets/paws.png" class="img-fluid" alt="Responsive image" />
+			<img src="/stylesheets/paws.png" class="img-responsive center-block" alt="Responsive image of pawprints" />
 			</div>
-			<p>View these cute pictures of Bailey the Cavapoo puppy.</p>
-			<p>To upload a picture, first upload it for free to <a href="https://imgur.com/">Imgur.com</a>, and then use the image url for the post on this site.</p>
+			<p>Enjoy these cute pictures and posts about Bailey the Cavapoo puppy.</p>
+			<p>To upload a post, first upload the image for free to <a href="https://imgur.com/">Imgur.com</a>, and then use the direct image url for the post here on Baileybook.</p>
 			<p>
 				<a class="btn btn-primary btn-lg" href="/posts/new">Add New Post</a>
 			</p>
@@ -19,9 +19,9 @@
 		 <% posts.forEach(function(post){ %>
 			<div class="col-md-3 col-sm-6">
 				<div class="thumbnail">
-				<img src="<%= post.image %>">
+				<img style="height:300px;" src="<%= post.image %>">
 				<div class="caption">
-				<h4><%= post.name %></h4>
+				<h4><%= post.title %></h4>
 				</div>
 				<p>
 					<a href="/posts/<%= post._id %>" class="btn btn-primary">View Larger</a>
