@@ -1,6 +1,6 @@
 # [Baileybook!](https://baileyspage.herokuapp.com/posts)
 
-### Live link above!
+### Check out the live link above!
 ### A responsive, mobile friendly image sharing site made specifically for a four legged friend named Bailey!
 
 ### Node, Express, MongoDB, and some other stuff. (Deployed with the Heroku CLI and MongoDB Atlas)
