@@ -8,3 +8,5 @@
 
 
 #### Visit the site and enjoy the pictures, and if you want, you can upload pics too.
+
+![RESTful Routes table](routes.png)
